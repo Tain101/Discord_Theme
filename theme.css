@@ -1,12 +1,11 @@
 /* This will automatically update your theme to the latest release */
 @import "https://rawgit.com/AlexFlipnote/Discord_Theme/master/theme.css";
 
-
 .theme-dark .user-settings-account:after,
 .theme-light .user-settings-account:after {
   color: var(--accent); font-weight: bold;
   white-space: pre;
-  content: "Base theme \00000A https://github.com/AlexFlipnote/Discord_Theme \00000A version: 1.0.4.43";
+  content: "Base theme \00000A https://github.com/AlexFlipnote/Discord_Theme";
 }
 
 /* GLOBAL */
@@ -52,21 +51,24 @@
   background-color: var(--dark-secondary);
 }
 /* End GLOBAL */
+
 /* User Settings */
 /*my account under user settings*/
-/*TODO-check default*/
 .theme-light .ui-card-primary, .theme-dark .ui-card-primary {
   background: transparent;        /*bg image*/
   background-color: var(--dark-primary);
   border-color: none;
 }
+
 .ui-button.brand.filled {
   background-color: var(--red);
 }
+
 .ui-button.brand.filled:hover {
   opacity: .8;
   background-color: var(--red);
 }
+
 .ui-button.brand.outlined:hover {
   opacity: 0.6;
 }
@@ -74,24 +76,53 @@
 .guild-settings-modal-emoji .no-emoji p {
   color: grey;
 }
+
 /* END: User Settings */
-
-
 
 /* Scroller */
 .scroller-wrap .scroller::-webkit-scrollbar {
  width: 4px;
 }
 
-/* END: Scroller */
+/* member list sidebar */
+.channel-members-wrap {
+  width: 193px; /* lines up with separator next to search */
+  min-width: 100px;
+}
+
+.channel-members {
+  padding: 0;
+
+}
+
+.channel-members h2 {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px !important;
+  padding-left: 10px;
+  color: hsla(0,0%,100%,0.6) !important;
+  text-decoration: underline;
+  line-height: 30px;
+}
+
+.channel-members .member {
+  padding-left: 18px;
+}
+
+.channel-members .member .member-inner {
+  width: 130px;
+  flex-shrink: 0;
+  background-size: 130px 30px;
+  position: relative;
+}
+
 /* User Popout */
 .bot-tag.bot-tag-invert {
   background-color: var(--purple)!important;
   color: #fff!important;
 }
-/* END: User Popout */
-/* Region */
 
+/* Region */
 .region-select .region-select-inner, .region-select button { border: none; }
 .region-select:hover button {
   background-color: var(--green);
@@ -100,8 +131,8 @@
 .region-select-modal .region-select-modal-option:hover {
   border: 5px solid var(--green);
 }
-/* END: Region */
 
+/* END: Region */
 
 /* Emoji picker */
 .emoji{
@@ -112,8 +143,8 @@
 .emoji.jumboable, .emoji-picker .scroller .emoji-item{
   width : 40px;
   height: 40px;
-  /*margin: 2px 0 2px 4px;*/
 }
+
 .emoji-picker .scroller .row{
   height: 40px;
 }
@@ -152,25 +183,28 @@
   margin-right: 0px;
   margin-bottom: 0px!important;
 }
+
 /* END: Emoji picker */
 
 /* Status Picker */
 .status-online{
   background-color: var(--green);
 }
+
 .status-idle{
   background-color: var(--yellow);
 }
+
 .status-dnd{
   background-color: var(--red);
 }
+
 /* END: Status Picker */
 
 /* Add/Make new server */
 .create-guild-container .form-actions .btn-default:hover {
   box-shadow: inset 6.5em 0 0 0 var(--red);
 }
-/* END: Add/Make new server */
 
 /* Account Section */
 .account {height: 40px; padding:1px;}
@@ -186,6 +220,7 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
 .account .btn-mute.disabled:hover:after,
 .account .btn-mute.disabled:after {
   /*TODO decide on proper color for errors, maybe not red?*/
@@ -196,8 +231,8 @@
 .account .btn-deafen.disabled:after {
   background-color: var(--red);
 }
-/* END: Account Section */
 
+/* END: Account Section */
 /* Message Textarea */
 
 .message-group{
@@ -233,61 +268,67 @@
 .chat .avatar-large{
   margin-right: 10px;
 }
-/* END: Message Textarea */
 
+/* END: Message Textarea */
 /* HEADER */
+
 .chat>.title-wrap{
   min-height: 40px;
 }
+
+#friends .friends-header,
 .guild-header header,
 .private-channels .search-bar{
   height: 40px;
   padding: 0px 24px;
 }
+.titlebar {
+  height: 1px;
+}
+
+.titlebar button {
+  margin-bottom: 20px;
+}
+
 /* END: HEADER */
-
-
 /* Form */
-
 .form .btn.red {
   background-color: var(--red);
 }
-/* END: Form */
-
 
 /* Ban and Kick */
 .alert.form .form-inner .cancel {
   background-color: var(--red);
   border-color: transparent;
 }
+
 .alert.form .form-inner .cancel:hover {
   background-color: var(--red-light);
 }
-/* END: Ban and Kick */
 
+/* END: Ban and Kick */
 /* Server Settings */
 .theme-dark .popout section { background-color: var(--dark-secondary); }
 .theme-dark .ui-color-picker-custom { background: var(--dark-primary); }
-
 .ui-flex.flex-horizontal-reverse>.ui-flex-child:first-child,
 .ui-flex.flex-horizontal-reverse>.ui-flex-child:last-child {
   background: transparent;
 }
-/* END: Server Settings */
 
 /* Server Section */
-
 .guilds-wrapper {
  width: 52px;/*server side bar width*/
 }
 
 .guilds-wrapper .guilds{
   padding: 7px 0px 18px 10px;
-  }
+}
+
 .guilds-wrapper .dms {
   margin-top: 0;
   margin-bottom: 0;
 }
+
 .guilds-wrapper .guilds .guild{
   width:  30px;
   height: 30px;
@@ -300,6 +341,7 @@
   font-size: 9px !important; /*makes text fit properly, but too small. maybe clipping is ok*/
   line-height: 30px;
 }
+
 .guilds-wrapper .guilds .friends-icon {
   background-image: url('https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_forum_white_24px.svg');
   width:  30px;
@@ -345,16 +387,19 @@
   border-left: 5px solid var(--notif);
 }
 
-.guilds-wrapper .guild.guilds-add { /*add new server button*/
+.guilds-wrapper .guild.guilds-add {
+  /*add new server button*/
   width: 30px;
   height: 30px;
   font-size: 20px;
 }
+
 .guilds-wrapper .guilds .guild-separator {
   left: -15px;
 }
 
-.guilds-wrapper .guilds .guild .guild-inner { /*background for servers with no icon*/
+.guilds-wrapper .guilds .guild .guild-inner {
+  /*background for servers with no icon*/
   background: var(--dark-secondary) !important;
 }
 
@@ -363,8 +408,8 @@
 }
 
 /* END: Server Section */
-
 /* Notifications */
+
 .badge {
   background-color: var(--notif);
 }
@@ -382,11 +427,10 @@
   line-height: 10px;
   padding: 3px 6px;
 }
-/* END: Notifications */
 
+/* END: Notifications */
 /* code formatting */
 /* base from: https://gist.github.com/jakeoid/33a608c852bf890e361523d245664882*/
-
 .hljs {
   display: block;
   overflow-x: auto;
@@ -445,14 +489,12 @@
   color: var(--accent) !important
 }
 
-
 .hljs-class .hljs-title {
   color: #f8f8f2 !important
 }
 
 .hljs-string,
 .hljs-type,
-
 .hljs-builtin-name,
 .hljs-selector-id,
 .hljs-selector-attr,

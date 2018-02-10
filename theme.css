@@ -869,3 +869,8 @@ button[class*='actionRed'] {
 	height: 20px;
 	width: 20px;
 }
+
+video,
+video[autoplay] {
+	display: block;
+}

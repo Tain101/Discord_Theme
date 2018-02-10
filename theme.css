@@ -857,5 +857,15 @@ div[class*='container-'] div[class*='wrapperSelectedText-'] div[class*='contentS
 	border-left: 3px solid var(--accent);
 }
 
+button[class*='actionRed'] {
+	background-color: var(--red);
+}
 
-
+.guilds-wrapper .guilds .guild.audio .guild-inner::after {
+	top: 50%;
+	right: -2px;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-size:  10px;
+	height: 20px;
+	width: 20px;
+}

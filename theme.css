@@ -43,20 +43,124 @@
 div[class*='notice'] {
 	margin-right: 120px;
 }
-/*****************/
-/* GUILDS COLUMN */
-/*****************/
+/*******************/
+/*  GUILDS COLUMN  */
+/* .guilds-wrapper */
+/*******************/
 
-/* new mentions */
-div[class*='unreadTop-'] div[class*='bar-'],
-div[class*='unreadBottom-'] div[class*='bar-'] {
+.guilds-wrapper {
+	width: 52px;/*server side bar width*/
+}
+
+.guilds-wrapper .dms {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+
+.guilds-wrapper .guilds {
+	padding: 13px 0 18px 10px;
+}
+
+
+.guilds-wrapper .guilds .friends-icon {
+	width: 30px;
+	height: 30px;
+
+	background-image: url('https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_forum_white_24px.svg');
+	background-size: 15px 15px;
+}
+
+.guilds-wrapper .guilds .guild-separator {
+	left: -15px;
+}
+
+.guilds-wrapper .unread-mentions-indicator-bottom .unread-mentions-bar,
+.guilds-wrapper .unread-mentions-indicator-top .unread-mentions-bar {
 	background-color: var(--notif);
 }
 
 
-/*******************/
-/* CHANNELS COLUMN */
-/*******************/
+.guilds-wrapper .guilds .guild {
+	width: 30px;
+	height: 30px;
+}
+
+
+.guilds-wrapper .guilds .guild .guild-inner a {
+	font-size: 9px !important; /*makes text fit properly, but too small. maybe clipping is ok*/
+	line-height: 30px;
+
+	width: 30px;
+	height: 30px;
+
+	background-size: 30px 30px;
+}
+
+
+.guilds-wrapper .guilds .guild.unread::before {
+	/*highlight bar for selected server*/
+	position: absolute;
+	z-index: 100;
+	top: -2px;
+	left: -9px;
+
+	visibility: visible !important;
+
+	width: 3px;
+	height: 35px;
+	margin-top: 0;
+
+	-webkit-transform: translate(0px, 0px) scale(1);
+	        transform: translate(0px, 0px) scale(1);
+
+	border-left: 3px solid var(--notif);
+	border-radius: 0;
+	background: transparent;
+}
+
+.guilds-wrapper .guilds .guild.selected.unread::before {
+	border-left: 3px solid var(--notif);
+}
+
+.guilds-wrapper .guilds .guild.selected::before {
+	border-left: 3px solid var(--accent);
+}
+
+.guilds-wrapper .guild.guilds-add {
+	font-size: 20px;
+	/*add new server button*/
+
+	width: 30px;
+	height: 30px;
+}
+
+
+
+.guilds-wrapper .guilds .guild .guild-inner {
+	/*background for servers with no icon*/
+	background: var(--dark-secondary) !important;
+}
+
+.guilds-wrapper .guilds .guild.audio .guild-inner::after {
+	top: 60%;
+}
+
+
+.guilds-wrapper .guilds .guild.audio .guild-inner::after {
+	top: 50%;
+	right: -2px;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-size:  10px;
+	height: 20px;
+	width: 20px;
+}
+
+
+/***************************/
+/*     CHANNELS COLUMN     */
+/* div[class*='channels-'] */
+/***************************/
 
 /* UNREAD CHANNELS */
 /* # next to channel title, prevent recolor  */
@@ -69,9 +173,11 @@ div[class*='container-'] div[class*='contentUnreadText-'] div[class*='nameUnread
 	color: #72767D;
 }
 
-
-
-
+/* new mentions */
+div[class*='unreadTop-'] div[class*='bar-'],
+div[class*='unreadBottom-'] div[class*='bar-'] {
+	background-color: var(--notif);
+}
 
 /* notif bar to the left of channels with unread messages */
 div[class*='container-'] div[class*='wrapperUnreadText-'] div[class*='unread-'] {
@@ -86,9 +192,11 @@ div[class*='container-'] div[class*='wrapperUnreadText-'] div[class*='unread-'] 
 	background: var(--notif);
 }
 
-/*                */
-/* USER CONTAINER */
-/*                */
+/*																									*/
+/*									USER CONTAINER									*/
+/* div[class*='channels-'] div[class*='container-'] */
+/*																									*/
+
 /* User Mute/Deafen Button */
 div[class*='channels-'] > div[class*='container'] div[class*='flex-'] button[style*='896770bf2d6ed0358ed0adefdbe96a24'],
 div[class*='channels-'] > div[class*='container'] div[class*='flex-'] button[style*='c8845c514bbf3f1e5bea064c1e40b08d'] {
@@ -120,6 +228,26 @@ div[class*='channels-'] > div[class*='container'] div[class*='flex-'] button[sty
 /*           */
 
 /* messages */
+
+.edit-container-outer .avatar-large {
+	display:  none;
+}
+.message-group .edit-message,
+.message-group .edit-message .edit-container-outer{
+	margin-left: 0;
+	vertical-align: baseline;
+}
+
+.message-group .edit-message div[class*='innerEnabled-']{
+	background-color: var(--dark-highlight) !important;
+	border-radius: 3px !important;
+}
+
+.message-group .mentioned .message-text::after{
+	border-left: 4px solid var(--notif);
+	border-radius: 0;
+}
+
 /* textbox */
 
 /*                        */
@@ -138,10 +266,13 @@ div[class*='channels-'] > div[class*='container'] div[class*='flex-'] button[sty
 }
 
 .unread-mentions-indicator-bottom > div {
-	visibility: hidden;
+	/* visibility: hidden; */
 
-	background-color: var(--notif);
+	/* background-color: var(--notif); */
 }
+
+
+
 
 /*unread channel icon*/
 div[class*='channels-'] div[class*='wrapperUnreadText-']::before,
@@ -501,62 +632,6 @@ div[class*='channels-'] > div[class*='container'] {
 }
 
 /* Server Section */
-.guilds-wrapper {
-	width: 52px;/*server side bar width*/
-}
-
-.guilds-wrapper .guilds {
-	padding: 13px 0 18px 10px;
-}
-
-.guilds-wrapper .dms {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.guilds-wrapper .guilds .guild {
-	width: 30px;
-	height: 30px;
-}
-
-.guilds-wrapper .guilds .guild .guild-inner a {
-	font-size: 9px !important; /*makes text fit properly, but too small. maybe clipping is ok*/
-	line-height: 30px;
-
-	width: 30px;
-	height: 30px;
-
-	background-size: 30px 30px;
-}
-
-.guilds-wrapper .guilds .friends-icon {
-	width: 30px;
-	height: 30px;
-
-	background-image: url('https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_forum_white_24px.svg');
-	background-size: 15px 15px;
-}
-
-.guilds-wrapper .guilds .guild.unread::before {
-	/*highlight bar for selected server*/
-	position: absolute;
-	z-index: 100;
-	top: -2px;
-	left: -9px;
-
-	visibility: visible !important;
-
-	width: 3px;
-	height: 35px;
-	margin-top: 0;
-
-	-webkit-transform: translate(0px, 0px) scale(1);
-	        transform: translate(0px, 0px) scale(1);
-
-	border-left: 3px solid var(--notif);
-	border-radius: 0;
-	background: transparent;
-}
 
 div[class*='contentSelectedText-']::before,
 .unread-23Kvxk,
@@ -576,7 +651,7 @@ div[class*='contentSelectedText-']::before,
 
 	transform: translate(0px, 0px) scale(1);
 
-	border-left: 12px solid var(--accent);
+	/* border-left: 12px solid var(--accent); */
 	border-radius: 0;
 	background: transparent;
 }
@@ -585,34 +660,7 @@ div[class*='contentSelectedText-']::before,
 	border-left: 12px solid var(--notif);
 }
 
-.guilds-wrapper .guilds .guild.selected.unread::before {
-	border-left: 5px solid var(--notif);
-}
 
-.guilds-wrapper .guilds .guild.selected::before {
-	border-left: 5px solid var(--accent);
-}
-
-.guilds-wrapper .guild.guilds-add {
-	font-size: 20px;
-	/*add new server button*/
-
-	width: 30px;
-	height: 30px;
-}
-
-.guilds-wrapper .guilds .guild-separator {
-	left: -15px;
-}
-
-.guilds-wrapper .guilds .guild .guild-inner {
-	/*background for servers with no icon*/
-	background: var(--dark-secondary) !important;
-}
-
-.guilds-wrapper .guilds .guild.audio .guild-inner:"after {
-	top: 60%;
-}
 
 /* END: Server Section */
 /* Notifications */
@@ -841,11 +889,6 @@ button{
 	opacity: 0.6;
 }
 
-.unread-mentions-indicator-bottom .unread-mentions-bar,
-.unread-mentions-indicator-top .unread-mentions-bar {
-	background-color: var(--notif);
-}
-
 
 div[class*='container-'] div[class*='wrapperSelectedText-'] div[class*='contentSelectedText-'] {
 	position: absolute;
@@ -859,15 +902,6 @@ div[class*='container-'] div[class*='wrapperSelectedText-'] div[class*='contentS
 
 button[class*='actionRed'] {
 	background-color: var(--red);
-}
-
-.guilds-wrapper .guilds .guild.audio .guild-inner::after {
-	top: 50%;
-	right: -2px;
-	background-color: rgba(0, 0, 0, 0.5);
-	background-size:  10px;
-	height: 20px;
-	width: 20px;
 }
 
 video,

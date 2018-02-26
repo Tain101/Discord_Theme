@@ -227,6 +227,10 @@ div[class*='channels-'] > div[class*='container'] div[class*='flex-'] button[sty
 /* CHAT AREA */
 /*           */
 
+.theme-dark .messages-wrapper {
+
+}
+
 /* messages */
 
 .edit-container-outer .avatar-large {
@@ -244,7 +248,7 @@ div[class*='channels-'] > div[class*='container'] div[class*='flex-'] button[sty
 }
 
 .message-group .mentioned .message-text::after{
-	border-left: 4px solid var(--notif);
+	border-left: 1px solid var(--notif);
 	border-radius: 0;
 }
 
@@ -590,6 +594,10 @@ div[class*='channels-'] > div[class*='container'] {
 	padding: 0 24px;
 }
 
+.private-channels .channel.selected::before {
+	border-left: 3px solid var(--accent);
+}
+
 .titlebar {
 	height: 15px;
 
@@ -907,4 +915,42 @@ button[class*='actionRed'] {
 video,
 video[autoplay] {
 	display: block;
+}
+
+
+/**
+ * Large Scale image previews
+ */
+.modal-2LIEKY {
+	padding: 60px;
+}
+
+/*here is where we don't want 100% scale*/
+.modal-2LIEKY .inner-1_1f7b {
+	width: 100% !important;
+	height: 100% !important;
+	max-height: 100% !important;
+	max-width: 100% !important;
+	align-self: center;
+}
+
+.modal-2LIEKY .inner-1_1f7b > div {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.modal-2LIEKY .inner-1_1f7b > div > div > a {
+	display: block;
+	text-align: center;
+}
+
+.modal-2LIEKY .inner-1_1f7b .imageWrapper-38T7d9 {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.modal-2LIEKY .inner-1_1f7b .imageWrapper-38T7d9 img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: contain;
 }

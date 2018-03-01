@@ -551,7 +551,7 @@ div[class*='channelTextAreaEnabledNoAttach'],
 .channel-text-area-default,
 .channel-textarea.has-results .channel-textarea-inner,
 div[class*='channels-'] > div[class*='container'] {
-	height: var(--textbox-height);
+	min-height: var(--textbox-height);
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-top: 0;
@@ -922,35 +922,83 @@ video[autoplay] {
  * Large Scale image previews
  */
 .modal-2LIEKY {
-	padding: 60px;
+		padding: 6%;
+		padding-top: 4%;
+		padding-bottom: 5%;
 }
 
 /*here is where we don't want 100% scale*/
 .modal-2LIEKY .inner-1_1f7b {
-	width: 100% !important;
-	height: 100% !important;
-	max-height: 100% !important;
-	max-width: 100% !important;
-	align-self: center;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    align-self: center;
+    outline: solid 1px rgba(255, 255, 255, 0.3);
+
 }
 
 .modal-2LIEKY .inner-1_1f7b > div {
-	width: 100% !important;
-	height: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
-
+.modal-2LIEKY .inner-1_1f7b > div > div{
+	width: 100%;
+}
 .modal-2LIEKY .inner-1_1f7b > div > div > a {
-	display: block;
-	text-align: center;
+		width: max-content;
+    display: block;
+    text-align: center;
 }
 
 .modal-2LIEKY .inner-1_1f7b .imageWrapper-38T7d9 {
-	width: 100% !important;
-	height: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .modal-2LIEKY .inner-1_1f7b .imageWrapper-38T7d9 img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.backdrop-2ohBEd {
+	opacity: 0 !important;
+}
+
+.channel-members-wrap div[class*="scroller-"]{
+	background: var(--dark-primary);
+}
+
+.inner-1-09ZV {
+	margin: 0 !important;
+	display: flex;
+	flex-direction: column;
+}
+.inner-1-09ZV div[class*="file-"]{
+	height: 100% !important;
+	/* display: flex; */
+	flex-direction: column !important;
+	margin: 16px;
+	margin-bottom: 0;
+}
+
+.inner-1-09ZV div[class*="file-"] div[class*="icon-"]{
+	background-size: contain !important;
+	background-color: rgba(0, 0, 0, 0.3)  !important;
+	border: solid 1px rgba(255, 255, 255, 0.3) !important;
 	width: 100% !important;
 	height: 100% !important;
-	object-fit: contain;
+	/* margin: 0 !important; */
+	margin: 0 !important;
+	flex-shrink: 1 !important;
+}
+.inner-1-09ZV div[class*="file-"] div[class*="description-"]{
+	align-self: flex-end;
+	/* padding-top: 10px !important; */
+	height: min-content !important;
+}
+
+div[class*="uploadModal-"] div[class*="footer-"]{
+	padding: 0 !important;
 }

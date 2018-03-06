@@ -23,6 +23,11 @@
 	--yellow:         rgba(198, 171, 004, 0.9); /* #c6aB04;*/
 	--red:            rgba(249, 038, 114, 0.9); /* #F92672;*/
 	--purple:         #AE81FF; /* #AE81FF;*/
+
+
+/* #AE81FF | 	|---*/
+/* CH123456 | 	|---*/
+
 	--textbox-height: 42px;
 	/*--nsfw-image:   url("https://i.alexflipnote.xyz/c2472b.png");*/
 
@@ -943,10 +948,15 @@ video[autoplay] {
 	height: 100% !important;
 	display: flex;
 	flex-direction: column;
+	max-width: 100% !important;
+	max-height: 100% !important;
 }
 .modal-2LIEKY .inner-1_1f7b > div > div{
 	outline: solid 1px rgba(255, 255, 255, 0.3);
 	width: 100%;
+}
+.modal-2LIEKY .inner-1_1f7b > div > div > button{
+	margin: 16px;
 }
 .modal-2LIEKY .inner-1_1f7b > div > div > a {
 	width: 100%;
@@ -1002,11 +1012,26 @@ video[autoplay] {
 	height: min-content !important;
 }
 
-div[class*="uploadModal-"] div[class*="footer-"]{
+.modal-2LIEKY .inner-1_1f7b div[class*="flex-"] h4,
+.modal-2LIEKY .inner-1_1f7b div[class*="flex-"] svg,
+.modal-2LIEKY .inner-1_1f7b div[class*="flex-"] div[class*="guildName-"]{
+	text-align: left;
+	padding: 5px;
+	padding-left: 16px;
+}
+
+.modal-2LIEKY .inner-1_1f7b div[class*="flex-"]{
+	padding: 0 !important;
+	/* height: 100%; */
+	/* flex-shrink: 1 !important; */
+	/* justify-items: center; */
+}
+div[class*="uploadModal-"] div[class*="footer-"] {
 	padding: 0 !important;
 }
 
-.modal-2LIEKY .inner-1_1f7b form {
+.modal-2LIEKY .inner-1_1f7b form,
+.modal-2LIEKY .inner-1_1f7b div[class**="modal-"]{
 	width: 100%;
 	height: 100%;
 	max-height: 100% !important;

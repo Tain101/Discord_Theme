@@ -919,7 +919,7 @@ video[autoplay] {
 	padding-top:    3%;
 	padding-bottom: 4%;
 	align-items: stretch;
-	z-index: 10000;
+	z-index: 1001;
 }
 
 .modal-2LIEKY .inner-1_1f7b{

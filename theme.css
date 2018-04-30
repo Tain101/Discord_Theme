@@ -1,0 +1,426 @@
+/*------------------------------------*\
+    $CONTENTS
+\*------------------------------------*/
+	/*
+	*	$NOTES
+	*	$VARS
+	*		$Colors
+	*		$Sizes
+	*		$Assets
+	*	$MAIN
+	*		$Shared							- rules that select from multiple areas
+	*		$Misc								- rules that do not fit into any of the other categories
+	*			$TitleBar					- grab bar and min/max/close buttons
+	*		$Guilds							- Server select sidebar (furthest left)
+	*		$Channels						- Server channel select sidebar (next left)
+	*			$Header						- dropdown for server settings
+	*			$ChannelScroller	-
+	*			$Footer						- footer for user settings & voice buttons
+	*		$Chat
+	*			$Title						- Header that contains the channel title
+	*			$Messages					- main area containing messages
+	*			$TextBox					- where user types text
+	*			$Members				- sidebar list of members in a channel (furthest right)
+	*/
+
+/*------------------------------------*\
+		$NOTES
+\*------------------------------------*/
+	/**
+	 *
+	 *#2f3136
+	 *#7289da;
+	 *
+	 * Some examples of how discord default does pallets
+	 * background-color:	#f04747;
+	 * background-color:	#d84040
+	 * background-color:	#c03939
+	 * border-color:			rgba(240,71,71,.3);
+	 * border-color:			rgba(240,71,71,.6)
+	 * background-color:	rgba(240,71,71,.1);
+	 * background-color:	#009edc
+	 * background-color:	#008dc3
+	 * background-color:	#7289da;
+	 * background-color:	#f2f2f2;
+	 */
+
+/*------------------------------------*\
+		$VARS
+\*------------------------------------*/
+	/*------------------*\
+			$Colors
+	\*------------------*/
+		:root {
+			/* These are the 5 colors used as a base, monochromatic pallete */
+			--primary-bg: #16161d; /* Eigengrau */
+			--dark1:     #12121d;
+			--dark2:     #0b0b1d;
+			--light1:    #6c6c82;
+			--light2:    #9c9cba;
+
+			/*
+				These colors aren't used as backgrounds, but for things like borders
+					or separators
+
+				Grab Bar:
+			 		#46494e; - good color for borders?
+			 		#444444;
+
+		 		Icons:
+		 			#fff5
+					#999999
+		 			#fff .3 opacity
+		 	*/
+		  --border: 		hsla(0,0%,100%,.04);
+			--highlight: 	;
+			--separator: 	#999999;
+			/* hsla(0,0%,100%,.04); */
+			/* #0a0a0a; */
+
+			/* Colors used for things like status, or notifications. */
+			--notif:  rgba(252, 150, 33, 0.6); /* #FD971F */
+			--accent: #66D9EF;
+			--green:  #A6E22E;
+			--yellow: #c6aB04;
+			--red:    #F92672;
+			--purple: #AE81FF;
+		}
+	/*------------------*\
+			$Sizes
+	\*------------------*/
+		:root {
+			--textbox-height: 		42px;
+			--guild-width:    		52px;
+			--grab-bar-height:    6px;
+			/* --channels-width: 240px;  *//* default */
+			/* --members-min-width: 240px;  *//* default */
+		}
+	/*------------------*\
+			$Assets
+	\*------------------*/
+		:root{
+			/*--nsfw-image:   url("https://i.alexflipnote.xyz/c2472b.png");*/
+
+			/*move titlebar down and to the right*/
+			--i-rtl-invert: 0%;
+			--i-rtl-closeimg:    url(https://rawgit.com/intrnl/discordAdditions/master/revertTitlebar/assets/btn-close.svg);
+			--i-rtl-maximizeimg: url(https://rawgit.com/intrnl/discordAdditions/master/revertTitlebar/assets/btn-maximize.svg);
+			--i-rtl-minimizeimg: url(https://rawgit.com/intrnl/discordAdditions/master/revertTitlebar/assets/btn-minimize.svg);
+		}
+
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+	/*------------------*\
+	    $Shared
+	\*------------------*/
+
+	/* box shadow for all headers */
+	#app-mount div[class*='titleBar-'],
+	div[class*="titleWrapper-"] div[class*="title-"],
+	div[class*="channels-"] header{
+		background: var(--primary-bg);
+		box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 3px 0 rgba(0, 0, 0, 0.06);
+	}
+
+	/* same for the textbar and user settings at the bottom */
+	div[class*="channels-"] div[class*="container-"] + div[class*="container-"],
+	.chat .content form {
+
+		height: var(--textbox-height);
+		border: 0;
+		border-top: 1px solid var(--border);
+		margin: 0;
+		background-color: var(--primary-bg);
+		box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+		z-index: 1;
+		/* box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.06); */
+	}
+
+
+
+	/*------------------*\
+	    $Misc
+	\*------------------*/
+
+		/* $Titlebar */
+		/*
+
+			#app-mount div[class*='titleBar-'] {
+				align-items: center;
+
+				right: 12px;
+
+				width: 98px;
+				padding: 0 8px 0 12px;
+
+				background: var(--primary-bg);
+			}
+
+		*/
+
+		/* move the bar buttons to the top-right */
+		#app-mount div[class*='titleBar-'] {
+			align-items: center;
+
+			position:	 absolute;
+			top:			 0px;
+			right:		 0px;
+
+			width:	 90px;
+			height:	 48px;
+
+			margin:	 0px;
+			padding: 0px;
+
+			background: var(--primary-bg);
+
+			--webkit-app-region: no-drag;
+		}
+
+		#app-mount div[class*='titleBar-']::before {
+		    -webkit-app-region: drag;
+		    position: absolute;
+		    top: 0px;
+		    right: 0px;
+		    display: block;
+		    width: 100vw;
+		    height: var(--grab-bar-height);
+		    content: " "; /* we need a space to have something to grab */
+		    background-color: rgb(64, 64, 64);
+		    margin: 0px;
+		    padding: 0px;
+		    border-bottom: 1px solid rgb(71, 74, 79);
+		    z-index: 3000;
+		}
+
+		div[class*="titleBar-"] div[class*="wordmark-"],
+		div[class*="titleBar-"] div[class*="winButton-"] svg {
+			display: none;
+		}
+
+		div[class*="titleBar-"] div[class*="winButton-"] {
+			filter: invert(0%);
+
+			position: relative;
+			top: 0;
+
+			display: block;
+
+			width:  24px;
+			height: 24px;
+			margin: 0 2px;
+
+			opacity: 0.6;
+			background-color:    transparent;
+			background-repeat:   no-repeat;
+			background-position: center;
+			background-size:     24px;
+		}
+
+		div[class*="titleBar-"] div[class*="winButton-"]:hover {
+			opacity: 0.8;
+		}
+
+		div[class*="titleBar-"] div:nth-of-type(2) {
+			background-image: var(--i-rtl-closeimg);
+		}
+
+		div[class*="titleBar-"] div:nth-of-type(3) {
+			background-image: var(--i-rtl-maximizeimg);
+		}
+
+		div[class*="titleBar-"] div:nth-of-type(4) {
+			background-image: var(--i-rtl-minimizeimg);
+		}
+
+	/*------------------*\
+	    $Guilds
+	    .guilds-wrapper
+	\*------------------*/
+		.guilds-wrapper .scroller-wrap,
+		.guilds-wrapper {
+			width: var(--guild-width);
+		}
+
+		/* remove scrollbar */
+		.guilds-wrapper .scroller-wrap .scroller::-webkit-scrollbar{
+			display: none;
+		}
+
+		/* Icon Sizes */
+		/*------------*/
+
+		/* resize icons to fit better in slimmer sidebar */
+		.guilds-wrapper .guilds .guild,
+		.guilds-wrapper .guilds .friends-icon,
+		.guilds-wrapper .guild.guilds-add,
+		.guilds-wrapper .guilds .guild .guild-inner a	{
+			width:  30px;
+			height: 30px;
+
+			background-size: 30px 30px;
+			line-height: 30px;
+		}
+
+		/* resize text for servers that don't have icons */
+		.guilds-wrapper .guilds .guild .guild-inner a	{
+			font-size: 9px !important;
+		}
+
+		/* set background for servers that don't have icons */
+		.guilds-wrapper .guilds .guild .guild-inner {
+			background: var(--dark2) !important;
+		}
+
+		/* replace the 'friends' button with something nicer */
+		.guilds-wrapper .guilds .friends-icon {
+			background-image: url('https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_forum_white_24px.svg');
+			background-size: 15px 15px;
+		}
+
+		/* remove the number of friends online? */
+		.friends-online {
+			display: none;
+		}
+
+		/* unread mentions */
+	div[class*="unread-mentions-"][class*="active-"],
+	.chat .new-messages-bar {
+		background-color: var(--notif);
+	}
+
+	/*------------------*\
+	    $Channels
+	\*------------------*/
+
+		div[class*="channels-"],
+		.private-channels{
+			font-size: 14px;
+		}
+
+		div[class*="channels-"] div[class*="container-"],
+		.private-channels .channel {
+			background-color: var(--primary-bg);
+		}
+
+		/* $Header */
+		/*---------*/
+
+		/* $ChannelScroller */
+		/*------------------*/
+
+		/* change the size for channel section headers & make them all caps */
+		div[class*="nameDefault-"],
+		div[class*="nameHovered-"],
+		div[class*="nameMuted-"],
+		div[class*="nameCollapsed"],
+		div[class*="nameHoveredCollapsed"] {
+			font-size:			1.1em;
+			text-transform:	uppercase;
+		}
+
+		/* voice channel user names should not be changed */
+		div[class*="userDefault-"] div[class*="nameDefault-"] {
+			font-size:			inherit;
+			text-transform: inherit;
+		}
+
+		/* channel sidebars */
+
+		div[class*='containerDefault-'] div[class*='content-']{
+			position: absolute;
+
+			height: 100%;
+			width: 100%;
+			margin-left: 0;
+			padding-left: 15px;
+
+			border-radius: 0;
+
+
+		}
+
+		/* currently selected channel */
+		div[class*='contentSelectedText-'] {
+			border-left: 1px solid var(--accent);
+		}
+
+		/* $Footer */
+		/*---------*/
+		/* the '+' selects a "container-" who's previous sibling was also "container-" */
+		div[class*="channels-"] div[class*="container-"] + div[class*="container-"]{
+			height: var(--textbox-height);
+			border: 0;
+			border-top: 1px solid var(--border);
+			margin: 0;
+			/* border-top-color: var(--border); */
+		}
+	/*------------------*\
+			$Chat
+			.chat
+	\*------------------*/
+
+		/* $Title                           */
+		/* .chat div[class*='titleWrapper'] */
+		/*----------------------------------*/
+			#app-mount div[class*='titlebar-'],
+			div[class*="titleWrapper-"] div[class*="title-"] {
+			    background: var(--dark1);
+			}
+
+			div[class*="titleWrapper-"] div[class*="title-"] {
+				flex: 1 0 100% !important;
+				margin-right: 90px;
+			}
+
+		/* $Messages */
+		/*-----------*/
+			.chat .content .flex-spacer .messages-wrapper {
+				background-color: var(--primary-bg);
+			}
+			.scroller-wrap .scroller::-webkit-scrollbar {
+				/* display: flex; */
+				width: 4px;
+			}
+
+			/* Scrollbar */
+			/*-----------*/
+			.theme-dark .messages-wrapper .scroller-wrap ::-webkit-scrollbar {
+				width: 6px;
+			}
+			.theme-dark .messages-wrapper .scroller-wrap ::-webkit-scrollbar-track-piece {
+				background-color: transparent;
+				border:0;
+			}
+			.theme-dark .messages-wrapper .scroller-wrap ::-webkit-scrollbar-thumb {
+				background-color: rgba(0, 0, 0, 0.23);
+				border:0;
+			}
+
+		/* $TextBox */
+		/*----------*/
+
+			.chat .content form {
+				margin: 0;
+				background-color: var(--primary-bg);
+				/* border-top: 1px solid var(--border); */
+			}
+
+			.chat .content form div[class*='channelTextArea-']{
+				height: var(--textbox-height);
+				margin: 0;
+			}
+
+			.chat .content form div[class*="inner-"] {
+				border-radius: 0;
+				background-color: #16161d;
+			}
+
+		/* $Members                                  */
+		/* .chat .content div[class*='membersWrap-'] */
+		/*-------------------------------------------*/
+
+		div[class*='membersWrap-'] div[class*='members-'] {
+			background-color: var(--primary-bg);
+		}

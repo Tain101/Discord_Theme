@@ -58,6 +58,9 @@
 			--light1:    #6c6c82;
 			--light2:    #9c9cba;
 
+			/* --light1-6:    #FD971F; */
+			--light1-6:    rgba(108, 108, 130, 0.6);
+			--light1-2:    rgba(108, 108, 130, 0.2);
 			/*
 				These colors aren't used as backgrounds, but for things like borders
 					or separators
@@ -78,12 +81,14 @@
 			/* #0a0a0a; */
 
 			/* Colors used for things like status, or notifications. */
-			--notif:  rgba(252, 150, 33, 0.6); /* #FD971F */
+			--notif:  #FD971F;
 			--accent: #66D9EF;
 			--green:  #A6E22E;
 			--yellow: #c6aB04;
 			--red:    #F92672;
 			--purple: #AE81FF;
+
+			--notif-6: rgba(252, 150, 33, 0.6); /* #FD971F 60% opacity*/
 		}
 	/*------------------*\
 			$Sizes
@@ -119,28 +124,43 @@
 	#app-mount div[class*='titleBar-'],
 	div[class*="titleWrapper-"] div[class*="title-"],
 	div[class*="channels-"] header{
-		background: var(--primary-bg);
+		background: var(--dark1);
 		box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 3px 0 rgba(0, 0, 0, 0.06);
 	}
 
 	/* same for the textbar and user settings at the bottom */
-	div[class*="channels-"] div[class*="container-"]>:not(div[class*="scroller-"]) + div[class*="container-"],
+	div[class*="channels-"] > div[class*="container-"],
 	.chat .content form {
-
+		margin: 0;
 		height: var(--textbox-height);
+
 		border: 0;
 		border-top: 1px solid var(--border);
-		margin: 0;
+
+
+
 		background-color: var(--primary-bg);
-		box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2), 0 -3px 0 rgba(0, 0, 0, 0.06);
 		z-index: 1;
-		/* box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.06); */
 	}
 
-	/* prevents the above rule from adjusting the channel groups */
-	/* div[class*="channels-"] div[class*="container-"] div[class*="scrollerWrap"] div[class*="container-"] {
-		height: auto;
-	} */
+	/* and for the server, channel, */
+	.guilds-wrapper,
+	div[class*="scrollerWrap-"] {
+		/* z-index: 2; */
+		box-shadow: 2px 0 0 rgba(0, 0, 0, 0.2), 0 3px 0 rgba(0, 0, 0, 0.06);
+	}
+	/* and member sidebars */
+	div[class*="membersWrap-"] div[class*="scrollerWrap-"] {
+		z-index: 3;
+		box-shadow: -2px 0 0 rgba(0, 0, 0, 0.2), 0 -3px 0 rgba(0, 0, 0, 0.06);
+	}
+
+	/* number of unread messages */
+	.badge, /* server notification */
+	div[class*="iconSpacing-"] div[class*="wrapper-"] { /* channel notification */
+		background: var(--notif-6);
+	}
 
 	/*------------------*\
 	    $Misc
@@ -176,7 +196,7 @@
 			margin:	 0px;
 			padding: 0px;
 
-			background: var(--primary-bg);
+			/* background: var(--primary-bg); */
 
 			--webkit-app-region: no-drag;
 		}
@@ -241,6 +261,17 @@
 	    $Guilds
 	    .guilds-wrapper
 	\*------------------*/
+		.guilds-wrapper .guilds {
+			padding-top: calc(10px + var(--grab-bar-height));
+		}
+
+		.guilds-wrapper .guild-separator::after{
+			left: 0;
+			width: calc(100% - 20px);
+			background: var(--light1-6);
+			height: 1px;
+		}
+
 		.guilds-wrapper .scroller-wrap,
 		.guilds-wrapper {
 			width: var(--guild-width);
@@ -250,6 +281,29 @@
 		.guilds-wrapper .scroller-wrap .scroller::-webkit-scrollbar{
 			display: none;
 		}
+
+		/* highlight bar for selected server */
+		.guilds-wrapper .guilds .guild.unread::before,
+		.guilds-wrapper .guilds .guild.selected::before{
+			background: transparent;
+			border-radius: 0;
+			height: 100%;
+			margin-top: -50%;
+			width: 3px;
+			left: -10px; /* .guilds.scroller has left padding of 10px */
+		}
+
+		.guilds-wrapper .guilds .guild.unread::before,
+		.guilds-wrapper .guilds .guild.selected.unread::before {
+			background: var(--notif);
+		}
+
+		.guilds-wrapper .guilds .guild.selected::before {
+			background: var(--accent);
+			width: 2px;
+		}
+
+
 
 		/* Icon Sizes */
 		/*------------*/
@@ -288,10 +342,10 @@
 		}
 
 		/* unread mentions */
-	div[class*="unread-mentions-"][class*="active-"],
-	.chat .new-messages-bar {
-		background-color: var(--notif);
-	}
+		div[class*="unread-mentions-"][class*="active-"],
+		.chat .new-messages-bar {
+			background-color: var(--notif-6);
+		}
 
 	/*------------------*\
 	    $Channels
@@ -312,6 +366,11 @@
 
 		/* $ChannelScroller */
 		/*------------------*/
+
+		/* some box near the top that blocks part of the scroller */
+		div[class*="positionedContainer-"] div[class*="unreadTop-"] {
+			background: transparent;
+		}
 
 		/* change the size for channel section headers & make them all caps */
 		div[class*="nameDefault-"],
@@ -340,13 +399,19 @@
 			padding-left: 15px;
 
 			border-radius: 0;
+		}
 
-
+		/* unread channel highlight */
+		div[class*='wrapperUnreadText-'] div[class*='unread-']{
+			background: transparent;
+			height: 100%;
+			top: 0;
+			border-left: 4px solid var(--notif);
 		}
 
 		/* currently selected channel */
 		div[class*='contentSelectedText-'] {
-			border-left: 1px solid var(--accent);
+			border-left: 2px solid var(--accent);
 		}
 
 		/* $Footer */
@@ -369,7 +434,7 @@
 		/*----------------------------------*/
 			#app-mount div[class*='titlebar-'],
 			div[class*="titleWrapper-"] div[class*="title-"] {
-			    background: var(--dark1);
+			    /* background: var(--dark1); */
 			}
 
 			div[class*="titleWrapper-"] div[class*="title-"] {
@@ -401,13 +466,30 @@
 				border:0;
 			}
 
+			.theme-dark .messages-wrapper .messages .divider::before,
+			.theme-dark .messages-wrapper .messages .divider span{
+				background: transparent;
+			}
+
+			/* the ---- NEW MESSGES --- color */
+			.theme-dark .messages-wrapper .messages .divider.divider-red span{
+
+				color: var(--red);
+			}
+
+			.theme-dark .messages-wrapper .messages .divider.divider-red div{
+				background-color: var(--red);
+			}
+
 		/* $TextBox */
 		/*----------*/
 
-			.chat .content form {
-				margin: 0;
-				background-color: var(--primary-bg);
-				/* border-top: 1px solid var(--border); */
+			.chat .content form::before{
+				height: calc(100% - 10px);
+				width: 1px;
+				background: var(--light1-2);
+				margin: 5px 0;
+				content: " ";
 			}
 
 			.chat .content form div[class*='channelTextArea-']{

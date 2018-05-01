@@ -1764,3 +1764,7 @@ div[class*="titleWrapper-"] div[class*="title-"] {
 	div[class*="unread-mentions-"][class*="active-"]{
 		background-color: var(--notif);
 	}
+
+div[class*="unreadTop-"] {
+	background: transparent;
+}

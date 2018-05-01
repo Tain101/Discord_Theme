@@ -124,7 +124,7 @@
 	}
 
 	/* same for the textbar and user settings at the bottom */
-	div[class*="channels-"] div[class*="container-"] + div[class*="container-"],
+	div[class*="channels-"] div[class*="container-"]>:not(div[class*="scroller-"]) + div[class*="container-"],
 	.chat .content form {
 
 		height: var(--textbox-height);
@@ -137,7 +137,10 @@
 		/* box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.06); */
 	}
 
-
+	/* prevents the above rule from adjusting the channel groups */
+	/* div[class*="channels-"] div[class*="container-"] div[class*="scrollerWrap"] div[class*="container-"] {
+		height: auto;
+	} */
 
 	/*------------------*\
 	    $Misc
@@ -350,10 +353,10 @@
 		/*---------*/
 		/* the '+' selects a "container-" who's previous sibling was also "container-" */
 		div[class*="channels-"] div[class*="container-"] + div[class*="container-"]{
-			height: var(--textbox-height);
-			border: 0;
-			border-top: 1px solid var(--border);
-			margin: 0;
+			/* height: var(--textbox-height); */
+			/* border: 0; */
+			/* border-top: 1px solid var(--border); */
+			/* margin: 0; */
 			/* border-top-color: var(--border); */
 		}
 	/*------------------*\

@@ -1135,9 +1135,15 @@ div[class*='channels-'] > div[class*='container']{
 	background-color: var(--dark-primary);
 }
 
-/* the '+' selects a "container-" who's previous sibling was also "container-" */
+/* adjusts the height of the user settings & voice region settings bars at the bottom of channels sidebar */
+/* the '+' selects a  "container-" who's previous sibling was also "container-" */
 div[class*="channels-"] div[class*="container-"] + div[class*="container-"]{
 	height: var(--textbox-height);
+}
+
+/* prevents the above rule from adjusting the channel groups */
+div[class*="channels-"] div[class*="container-"] div[class*="scrollerWrap"] div[class*="container-"] {
+	height: auto;
 }
 
 div[class*="titleWrapper-"] div[class*="title-"] {

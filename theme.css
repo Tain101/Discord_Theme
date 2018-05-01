@@ -10,7 +10,7 @@
 	*	$MAIN
 	*		$Shared							- rules that select from multiple areas
 	*		$Misc								- rules that do not fit into any of the other categories
-	*			$TitleBar					- grab bar and min/max/close buttons
+	*			$GrabBar					- grab bar and min/max/close buttons
 	*		$Guilds							- Server select sidebar (furthest left)
 	*		$Channels						- Server channel select sidebar (next left)
 	*			$Header						- dropdown for server settings
@@ -44,41 +44,79 @@
 	 * background-color:	#f2f2f2;
 	 */
 
+	/**
+	 * General window layout:
+	 *
+	 * 1. Grab Bar				|	1	|	grab			|	bg-highlight
+	 * 2. Server Bar			|	4	|	serv			|	bg-dark2-alt
+	 * 3. Chat						|	2	|	chat,head	|	bg-primary
+	 * 	3.1 Header				|	5	|	chat,head	|	bg-dark2
+	 * 	3.2 Channels Bar	|	3	|	chan			|	bg-dark1
+	 * 	3.3 Members Bar		|	3	|	memb			|	bg-dark1
+	 * 	3.4 Chat Box			|	3	|	box				|	bg-dark1-alt
+	 *
+	 * -----------------------------------------|
+	 * | 1                                      |
+	 * -----------------------------------------|
+	 * | 2 | 3.1                                |
+	 * |   |------------------------------------|
+	 * |   | 3.2 | 3                      | 3.3 |
+	 * |   |     |                        |     |
+	 * |   |     |                        |     |
+	 * |   |     |                        |     |
+	 * |   |     |                        |     |
+	 * |   |     |                        |     |
+	 * |   |     |                        |     |
+	 * |   |------------------------------|     |
+	 * |   | 3.4                          |     |
+	 * ------------------------------------------
+	 */
+
 /*------------------------------------*\
 		$VARS
 \*------------------------------------*/
 	/*------------------*\
 			$Colors
+			Eigengrau - the color of the absence of light
+				#16161d;
+				hsl(240, 14%, 10%);
+				hsv(240, 24%, 11%);
+				rgb(21, 21, 28);
+
 	\*------------------*/
 		:root {
-			/* These are the 5 colors used as a base, monochromatic pallete */
-			--primary-bg: #16161d; /* Eigengrau */
-			--dark1:     #12121d;
-			--dark2:     #0b0b1d;
-			--light1:    #6c6c82;
-			--light2:    #9c9cba;
 
-			/* --light1-6:    #FD971F; */
+			--bg-grab-bar:			var(--bg-highlight);
+			--bg-guilds-bar:		var(--bg-server-bar);
+			--bg-chat:					var(--bg-primary);
+			--bg-header:				var(--bg-dark2);
+			--bg-channels-bar:	var(--bg-dark1);
+			--bg-members-bar:		var(--bg-dark1);
+			--bg-chat-box:			var(--bg-dark1-alt);
+
 			--light1-6:    rgba(108, 108, 130, 0.6);
 			--light1-2:    rgba(108, 108, 130, 0.2);
+
+			--bg-primary:		hsl(240, 14%, 10%); /* Eigengrau */
+			--bg-dark1:			hsl(240, 14%, 9%);
+			--bg-dark1-alt:	hsl(240, 18%, 9%);
+			--bg-dark2:			hsl(240, 14%, 7%);
+			--bg-dark2-alt: hsl(240, 22%, 7%);
+			--bg-highlight:	hsl(240, 14%, 20%);
+
 			/*
 				These colors aren't used as backgrounds, but for things like borders
 					or separators
-
-				Grab Bar:
-			 		#46494e; - good color for borders?
-			 		#444444;
 
 		 		Icons:
 		 			#fff5
 					#999999
 		 			#fff .3 opacity
 		 	*/
+		 	--bg-guild-icon:hsla(0,0%,100%,.04);
 		  --border: 		hsla(0,0%,100%,.04);
 			--highlight: 	;
 			--separator: 	#999999;
-			/* hsla(0,0%,100%,.04); */
-			/* #0a0a0a; */
 
 			/* Colors used for things like status, or notifications. */
 			--notif:  #FD971F;
@@ -124,7 +162,8 @@
 	#app-mount div[class*='titleBar-'],
 	div[class*="titleWrapper-"] div[class*="title-"],
 	div[class*="channels-"] header{
-		background: var(--dark1);
+		/* height: var(--textbox-height); */
+		background: var(--bg-header);
 		box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 3px 0 rgba(0, 0, 0, 0.06);
 	}
 
@@ -137,18 +176,21 @@
 		border: 0;
 		border-top: 1px solid var(--border);
 
-
-
-		background-color: var(--primary-bg);
 		box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2), 0 -3px 0 rgba(0, 0, 0, 0.06);
 		z-index: 1;
+	}
+
+	/* footer color */
+	div[class*="channels-"] > div[class*="container-"]:not(:first-child),
+	.chat .content form {
+		background: var(--bg-chat-box);
 	}
 
 	/* and for the server, channel, */
 	.guilds-wrapper,
 	div[class*="scrollerWrap-"] {
-		/* z-index: 2; */
-		box-shadow: 2px 0 0 rgba(0, 0, 0, 0.2), 0 3px 0 rgba(0, 0, 0, 0.06);
+		z-index: 2;
+		box-shadow: 2px 0 0 rgba(0, 0, 0, 0.2), 3px 0 0 rgba(0, 0, 0, 0.06);
 	}
 	/* and member sidebars */
 	div[class*="membersWrap-"] div[class*="scrollerWrap-"] {
@@ -166,22 +208,12 @@
 	    $Misc
 	\*------------------*/
 
-		/* $Titlebar */
-		/*
+	div[class*="base-"]{
+		border: 0;
+		border-radius: 0;
+	}
 
-			#app-mount div[class*='titleBar-'] {
-				align-items: center;
-
-				right: 12px;
-
-				width: 98px;
-				padding: 0 8px 0 12px;
-
-				background: var(--primary-bg);
-			}
-
-		*/
-
+		/* $GrabBar */
 		/* move the bar buttons to the top-right */
 		#app-mount div[class*='titleBar-'] {
 			align-items: center;
@@ -196,9 +228,7 @@
 			margin:	 0px;
 			padding: 0px;
 
-			/* background: var(--primary-bg); */
-
-			--webkit-app-region: no-drag;
+			-webkit-app-region: no-drag;
 		}
 
 		#app-mount div[class*='titleBar-']::before {
@@ -210,7 +240,7 @@
 		    width: 100vw;
 		    height: var(--grab-bar-height);
 		    content: " "; /* we need a space to have something to grab */
-		    background-color: rgb(64, 64, 64);
+		    background-color: var(--bg-grab-bar);
 		    margin: 0px;
 		    padding: 0px;
 		    border-bottom: 1px solid rgb(71, 74, 79);
@@ -268,13 +298,14 @@
 		.guilds-wrapper .guild-separator::after{
 			left: 0;
 			width: calc(100% - 20px);
-			background: var(--light1-6);
+			background: var(--light1-6); /* replace with --separator */
 			height: 1px;
 		}
 
 		.guilds-wrapper .scroller-wrap,
 		.guilds-wrapper {
 			width: var(--guild-width);
+			background: var(--bg-guilds-bar);
 		}
 
 		/* remove scrollbar */
@@ -327,7 +358,7 @@
 
 		/* set background for servers that don't have icons */
 		.guilds-wrapper .guilds .guild .guild-inner {
-			background: var(--dark2) !important;
+			background: var(--bg-guild-icon) !important;
 		}
 
 		/* replace the 'friends' button with something nicer */
@@ -356,9 +387,12 @@
 			font-size: 14px;
 		}
 
+		/* handled in rule:
+		**	div[class*="channels-"] > div[class*="container-"]
+		*/
 		div[class*="channels-"] div[class*="container-"],
 		.private-channels .channel {
-			background-color: var(--primary-bg);
+			background-color: var(--bg-channels-bar);
 		}
 
 		/* $Header */
@@ -368,8 +402,9 @@
 		/*------------------*/
 
 		/* some box near the top that blocks part of the scroller */
-		div[class*="positionedContainer-"] div[class*="unreadTop-"] {
-			background: transparent;
+		div[class*="channels-"] div[class*="unreadTop-"],
+		div[class*="channels-"] div[class*="unreadBottom-"] {
+			/* background: transparent; */
 		}
 
 		/* change the size for channel section headers & make them all caps */
@@ -416,14 +451,7 @@
 
 		/* $Footer */
 		/*---------*/
-		/* the '+' selects a "container-" who's previous sibling was also "container-" */
-		div[class*="channels-"] div[class*="container-"] + div[class*="container-"]{
-			/* height: var(--textbox-height); */
-			/* border: 0; */
-			/* border-top: 1px solid var(--border); */
-			/* margin: 0; */
-			/* border-top-color: var(--border); */
-		}
+
 	/*------------------*\
 			$Chat
 			.chat
@@ -445,7 +473,7 @@
 		/* $Messages */
 		/*-----------*/
 			.chat .content .flex-spacer .messages-wrapper {
-				background-color: var(--primary-bg);
+				background-color: var(--bg-chat);
 			}
 			.scroller-wrap .scroller::-webkit-scrollbar {
 				/* display: flex; */
@@ -499,7 +527,7 @@
 
 			.chat .content form div[class*="inner-"] {
 				border-radius: 0;
-				background-color: #16161d;
+				background-color: transparent;
 			}
 
 		/* $Members                                  */
@@ -507,5 +535,5 @@
 		/*-------------------------------------------*/
 
 		div[class*='membersWrap-'] div[class*='members-'] {
-			background-color: var(--primary-bg);
+			background-color: var(--bg-members-bar);
 		}

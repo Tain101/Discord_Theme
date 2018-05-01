@@ -93,6 +93,8 @@
 			--bg-channels-bar:	var(--bg-dark1);
 			--bg-members-bar:		var(--bg-dark1);
 			--bg-chat-box:			var(--bg-dark1-alt);
+			--bg-search-bar: 		var(--light1-2);
+			--bg-code:					hsl(120, 14%, 10%);
 
 			--light1-6:    rgba(108, 108, 130, 0.6);
 			--light1-2:    rgba(108, 108, 130, 0.2);
@@ -159,6 +161,8 @@
 	\*------------------*/
 
 	/* box shadow for all headers */
+	.private-channels .search-bar,
+	#app-mount div[class*='headerBar-'],
 	#app-mount div[class*='titleBar-'],
 	div[class*="titleWrapper-"] div[class*="title-"],
 	div[class*="channels-"] header{
@@ -208,10 +212,118 @@
 	    $Misc
 	\*------------------*/
 
+	.typing-2GQL18{
+		width: auto;
+		background: transparent;
+		bottom: var(--textbox-height);
+	}
+
+	/* Markup */
+	.theme-dark .message-group .comment .markup pre code {
+		background: var(--bg-code)
+	}
+	/* User Popup */
+	.theme-dark div[class*="body-"]{
+		background: var(--bg-primary);
+	}
+
+	.theme-dark div[class*="topSectionNormal-"]{
+		background: var(--bg-dark1);
+	}
+
+	/* status colors */
+	.status-idle,
+	div[class*="statusIdle-"]{
+		background: var(--yellow);
+		box-shadow: 0 0 0 transparent;
+	}
+
+	.status-online,
+	div[class*="statusOnline-"]{
+		background: var(--green);
+		box-shadow: 0 0 0 transparent;
+	}
+
+	.status-dnd,
+	div[class*="statusDnd-"]{
+		background: var(--red);
+		box-shadow: 0 0 0 transparent;
+	}
+
+	/* User Mute/Deafen Button */
+	div[class*='channels-'] > div[class*='container'] div[class*='flex-'] button[style*='896770bf2d6ed0358ed0adefdbe96a24'],
+	div[class*='channels-'] > div[class*='container'] div[class*='flex-'] button[style*='c8845c514bbf3f1e5bea064c1e40b08d'] {
+		background-color: var(--red);
+	}
+
+	/* red buttons */
+	button[class*='actionRed'] {
+		background-color: var(--red);
+	}
+
+	/* user settings */
+	.theme-dark .ui-standard-sidebar-view .content-region {
+		background: var(--bg-primary);
+	}
+
+	.theme-dark .ui-standard-sidebar-view .sidebar-region {
+		background: var(--bg-dark1);
+	}
+
+	/* Emojis */
+	div[class*="emojiPicker-"] .search-bar,
+	div[class*="emojiPicker-"] .search-bar.search-bar-light,
+	div[class*="emojiPicker-"] .search-bar.search-bar-light .search-bar-inner,
+	div[class*="emojiPicker-"] .search-bar-inner{
+		background: var(--bg-search-bar);
+		color: white;
+	}
+
+	div[class*="emojiPicker-"] div[class*="stickyHeader-"] {
+		background: transparent;
+	}
+
+	div[class*="emojiPicker-"]{
+		background: var(--bg-dark2-alt);
+	}
+
+	.emoji {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	.emoji.jumboable {
+		width: 3rem;
+		height: 3rem;
+	}
+
+	.reaction .emoji {
+		filter: none;
+
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+
 	div[class*="base-"]{
 		border: 0;
 		border-radius: 0;
 	}
+
+		/* private channels Search bar color */
+		.search-bar .search-bar-inner input {
+			text-align: center;
+			height: 100%;
+		}
+		.search-bar .search-bar-inner {
+			padding: 2px 8px;
+			height: 22px;
+			background: var(--bg-search-bar);
+		}
+
+		/* private channels friends button */
+		.private-channels .channel.selected a {
+			background: var(--bg-primary);
+		}
 
 		/* $GrabBar */
 		/* move the bar buttons to the top-right */
@@ -385,6 +497,7 @@
 		div[class*="channels-"],
 		.private-channels{
 			font-size: 14px;
+			background-color: var(--bg-channels-bar);
 		}
 
 		/* handled in rule:
@@ -472,12 +585,17 @@
 
 		/* $Messages */
 		/*-----------*/
+			#friends .friends-table, /* PM window */
 			.chat .content .flex-spacer .messages-wrapper {
 				background-color: var(--bg-chat);
 			}
 			.scroller-wrap .scroller::-webkit-scrollbar {
 				/* display: flex; */
 				width: 4px;
+			}
+
+			#friends .friends-table {
+				margin: 0;
 			}
 
 			/* Scrollbar */
@@ -501,12 +619,11 @@
 
 			/* the ---- NEW MESSGES --- color */
 			.theme-dark .messages-wrapper .messages .divider.divider-red span{
-
-				color: var(--red);
+				color: var(--notif);
 			}
 
 			.theme-dark .messages-wrapper .messages .divider.divider-red div{
-				background-color: var(--red);
+				background-color: var(--notif);
 			}
 
 		/* $TextBox */
@@ -527,7 +644,9 @@
 
 			.chat .content form div[class*="inner-"] {
 				border-radius: 0;
-				background-color: transparent;
+				margin-left: -1px; /* hide weird bg underneath? */
+				width: calc(100% + 2px);
+				background-color: var(--bg-chat-box);
 			}
 
 		/* $Members                                  */

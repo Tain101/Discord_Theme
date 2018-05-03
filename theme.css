@@ -227,6 +227,14 @@
 		background: var(--bg-primary);
 	}
 
+	.theme-dark div[class*="activityUserPopout-"] {
+		background: hsla(0, 0%, 0%, 0.2);
+	}
+
+	.theme-dark div[class*="activityUserPopout-"] div[class*="body-"]{
+		background: transparent;
+	}
+
 	.theme-dark div[class*="topSectionNormal-"]{
 		background: var(--bg-dark1);
 	}

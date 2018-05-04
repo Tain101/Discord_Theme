@@ -160,13 +160,14 @@
 	    $Shared
 	\*------------------*/
 
+	/* Shadows */
+
 	/* box shadow for all headers */
 	.private-channels .search-bar,
 	#app-mount div[class*='headerBar-'],
 	#app-mount div[class*='titleBar-'],
 	div[class*="titleWrapper-"] div[class*="title-"],
 	div[class*="channels-"] header{
-		/* height: var(--textbox-height); */
 		background: var(--bg-header);
 		box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 3px 0 rgba(0, 0, 0, 0.06);
 	}
@@ -181,7 +182,7 @@
 		border-top: 1px solid var(--border);
 
 		box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2), 0 -3px 0 rgba(0, 0, 0, 0.06);
-		z-index: 1;
+		z-index: 2;
 	}
 
 	/* footer color */
@@ -192,11 +193,17 @@
 
 	/* and for the server, channel, */
 	.guilds-wrapper,
-	div[class*="scrollerWrap-"] {
-		z-index: 2;
+	div[class*="channels-"] {
 		box-shadow: 2px 0 0 rgba(0, 0, 0, 0.2), 3px 0 0 rgba(0, 0, 0, 0.06);
 	}
+
+	div[class*="channels-"] {
+		z-index: 2;
+	}
 	/* and member sidebars */
+	.guilds-wrapper{
+		z-index: 3;
+	}
 	div[class*="membersWrap-"] div[class*="scrollerWrap-"] {
 		z-index: 3;
 		box-shadow: -2px 0 0 rgba(0, 0, 0, 0.2), 0 -3px 0 rgba(0, 0, 0, 0.06);
@@ -231,6 +238,7 @@
 		background: hsla(0, 0%, 0%, 0.2);
 	}
 
+	.theme-dark div[class*="activityProfile-"] div[class*="body-"],
 	.theme-dark div[class*="activityUserPopout-"] div[class*="body-"]{
 		background: transparent;
 	}
@@ -502,6 +510,7 @@
 	    $Channels
 	\*------------------*/
 
+
 		div[class*="channels-"],
 		.private-channels{
 			font-size: 14px;
@@ -525,7 +534,7 @@
 		/* some box near the top that blocks part of the scroller */
 		div[class*="channels-"] div[class*="unreadTop-"],
 		div[class*="channels-"] div[class*="unreadBottom-"] {
-			/* background: transparent; */
+			background: transparent;
 		}
 
 		/* change the size for channel section headers & make them all caps */

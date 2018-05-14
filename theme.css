@@ -133,11 +133,40 @@
 	/*------------------*\
 			$Sizes
 	\*------------------*/
-		:root {
+	/**
+	 * .guilds-wrapper {														*
+	 * 		width:70px;
+	 * "base-" {
+	 * 		flex: 1 1 auto;
+	 *   "spacer-" {
+	 *   		min-height:1px;
+	 *     	flex: 1 1 auto;
+	 *   "channels-" {															*
+	 *   		width: 240px;
+	 *   		flex-shrink: 0;
+	 *   		max-width: none;
+	 *   .chat {
+	 *   		flex: 1 1 0%;
+	 *   		.content {
+	 *   				min-height: 1px;
+	 *   				flex: 1 1 0%;
+	 *       		".flex-horizontal>.flex-spacer" {		*
+	 * 		      		min-width: 1px;
+	 * 				      flex: 1 1 0%;
+	 * 				  "membersWrap-" {										*
+	 * 				  		min-width:240px;
+	 */
+
+	:root {
+			/* chat area "flex-horizontal>.flex-spacer" */
+			/* membersWrap			min-width: 	240px; */
+			/* channels 				width: 			240px; */
+			/* "guilds-wrapper" width: 			70px; */
+			/* --content-min-width:  750px; */
 			--textbox-height: 		42px;
 			--guild-width:    		52px;
 			--grab-bar-height:    6px;
-			--channel-width: 240px;  /* default */
+			--channel-width: 			240px;  /* default */
 			/* --members-min-width: 240px;  *//* default */
 		}
 	/*------------------*\
@@ -232,7 +261,7 @@
 	}
 	/* User Popup */
 	.theme-dark div[class*="body-"]{
-		background: var(--bg-primary);
+		background: var(--bg-chat);
 	}
 
 	.theme-dark div[class*="activityUserPopout-"] {
@@ -280,7 +309,7 @@
 
 	/* user settings */
 	.theme-dark .ui-standard-sidebar-view .content-region {
-		background: var(--bg-primary);
+		background: var(--bg-chat);
 	}
 
 	.theme-dark .ui-standard-sidebar-view .sidebar-region {
@@ -637,6 +666,7 @@
 			#friends .friends-table, /* PM window */
 			.chat .content .flex-spacer .messages-wrapper {
 				background-color: var(--bg-chat);
+				min-width: var(--content-min-width);
 			}
 			.scroller-wrap .scroller::-webkit-scrollbar {
 				/* display: flex; */
@@ -669,6 +699,7 @@
 			/* the ---- NEW MESSGES --- color */
 			.theme-dark .messages-wrapper .messages .divider.divider-red span{
 				color: var(--notif);
+				background-color: var(--bg-chat);
 			}
 
 			.theme-dark .messages-wrapper .messages .divider.divider-red div{
@@ -705,3 +736,51 @@
 		div[class*='membersWrap-'] div[class*='members-'] {
 			background-color: var(--bg-members-bar);
 		}
+
+
+	/**
+	 * channels-
+	 * 		flex-shrink:1;
+	 * content .flex-horizontal>.flex-spacer {
+	 * 		min-width: var(--chat-min-width)
+	 * 		flex: 1 1 var(--chat-min-width)
+	 * "membersWrap-" {
+	 * 		min-width: ~70px?
+	 * 		flex: 1 1 0%;
+	 */
+	/**
+	 * do queries.
+	 * if width is big enough, do normal
+	 * otherwise, start hiding stuff
+	 */
+
+	 /* @media all and (max-width:  10000px){ */
+	 @media all and (max-width:  1100px){
+	 		.flex-horizontal>.flex-spacer,
+	 		.theme-dark .chat {
+				flex: 1 1 100%;
+			}
+			div[class*='channels-'],
+			div[class*="membersWrap"],
+	 		div[class*="membersWrap"] div[class*="scrollerWrap-"]{
+	 			max-width: 240px;
+	 			transition: all 0.5s;
+				flex: 1 0 0%;
+			}
+
+			div[class*='channels-'] {
+	 			min-width: 140px;
+	 		}
+
+	 		div[class*="membersWrap"],
+	 		div[class*="membersWrap"] div[class*="scrollerWrap-"] {
+				min-width: 64px;
+			}
+
+			div[class*='channels-']:hover,
+			div[class*="membersWrap"]:hover,
+	 		div[class*="membersWrap"] div[class*="scrollerWrap-"]:hover{
+	 			max-width: 240px;
+	 			flex: 1 1 50%;
+	 		}
+	 }

@@ -1,4 +1,4 @@
-/* 2018-06-20T15:50:20-05:00 */
+/* 2018-06-20T18:23:57-05:00 */
 /*------------------------------------*\
     $CONTENTS
 \*------------------------------------*/
@@ -543,9 +543,10 @@
 
 		/* resize icons to fit better in slimmer sidebar */
 		.guilds-wrapper .guilds .guild,
+		.guilds-wrapper .guilds .guild-icon,
 		.guilds-wrapper .guilds .friends-icon,
 		.guilds-wrapper .guild.guilds-add,
-		.guilds-wrapper .guilds .guild .guild-inner a	{
+		.guilds-wrapper .guilds .guild .guild-inner a{
 			width:  30px;
 			height: 30px;
 

@@ -121,13 +121,16 @@
 			--highlight: 	;
 			--separator: 	#999999;
 
+			--purple:	#8874ED;
+			--blue:		#46CEDF;
+			--green:	#85CE48;
+			--yellow:	#FFC83F;
+			--orange:	#FC961F;
+			--red:		#FF395A;
+
 			/* Colors used for things like status, or notifications. */
-			--notif:  #FD971F;
-			--accent: #66D9EF;
-			--green:  #A6E22E;
-			--yellow: #c6aB04;
-			--red:    #F92672;
-			--purple: #AE81FF;
+			--notif:  var(--orange);
+			--accent: var(--blue);
 
 			--notif-6: rgba(252, 150, 33, 0.6); /* #FD971F 60% opacity*/
 		}
@@ -186,6 +189,12 @@
 /*------------------------------------*\
     $MAIN
 \*------------------------------------*/
+
+	/* loading screen */
+	div[class*="container-"]
+ {
+		background: var(--bg-header);
+	}
 	/*------------------*\
 	    $Shared
 	\*------------------*/
@@ -248,7 +257,7 @@
 	/*------------------*\
 	    $Misc
 	\*------------------*/
-	.theme-dark 	div[class*="typing-"]{
+	.theme-dark 	div[class*="typing-"]:not([class*="status-"]){
 		width: auto;
 		background: hsla(0, 0%, 0%, 0.4);
 		bottom: var(--textbox-height);
@@ -643,11 +652,15 @@
 		}
 
 		/* unread channel highlight */
+		div[class*='wrapperHoveredText-'] div[class*='unread-'],
 		div[class*='wrapperUnreadText-'] div[class*='unread-']{
 			background: transparent;
 			height: 100%;
 			top: 0;
 			border-left: 4px solid var(--notif);
+			border-radius: 0;
+			z-index: 1;
+			margin: 0;
 		}
 
 		/* currently selected channel */

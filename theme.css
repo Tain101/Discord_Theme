@@ -552,6 +552,7 @@
 
 		/* resize icons to fit better in slimmer sidebar */
 		.guilds-wrapper .guilds .guild,
+		.guilds-wrapper .guilds .guild-error,
 		.guilds-wrapper .guilds .guild-icon,
 		.guilds-wrapper .guilds .friends-icon,
 		.guilds-wrapper .guild.guilds-add,
@@ -703,6 +704,10 @@
 
 			#friends .friends-table {
 				margin: 0;
+			}
+
+			.chat .messages {
+				background: var(--bg-header);
 			}
 
 			/* Scrollbar */

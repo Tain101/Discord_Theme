@@ -606,9 +606,11 @@
 		/* handled in rule:
 		**	div[class*="channels-"] > div[class*="container-"]
 		*/
+		div[class*="messages-"] div[class*="container-"],
 		div[class*="channels-"] div[class*="container-"],
 		.private-channels .channel {
 			background-color: var(--bg-channels-bar);
+			margin-bottom: 0;
 		}
 
 		/* $Header */
@@ -742,7 +744,10 @@
 		/* $TextBox */
 		/*----------*/
 
-			.chat .content form::before{
+			div[class*='chat-'] div[class*='content-'] form{
+				margin: 0;
+			}
+			div[class*='chat-'] div[class*='content-'] form::before{
 				height: calc(100% - 10px);
 				width: 1px;
 				background: var(--light1-2);
@@ -750,12 +755,13 @@
 				content: " ";
 			}
 
-			.chat .content form div[class*='channelTextArea-']{
+			div[class*='chat-'] div[class*='content-'] form div[class*='channelTextArea-']{
 				height: var(--textbox-height);
 				margin: 0;
+				padding: 0;
 			}
 
-			.chat .content form div[class*="inner-"] {
+			div[class*='chat-'] div[class*='content-'] form div[class*="inner-"] {
 				border-radius: 0;
 				margin-left: -1px; /* hide weird bg underneath? */
 				width: calc(100% + 2px);

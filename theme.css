@@ -382,7 +382,7 @@
 				vertical-align: top;
 			}
 
-
+	div[class*="reaction-"] .emoji,
 	.emoji {
 		width: 2rem;
 		height: 2rem;
